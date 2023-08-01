@@ -3,13 +3,15 @@ package com.company.bookstore.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "book")
-public class Book {
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,7 +80,22 @@ public class Book {
         this.id = id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return getId() == book.getId() &&
+                getAuthorId() == book.getAuthorId() &&
+                getPublisherId() == book.getPublisherId() &&
+                Objects.equals(getIsbn(), book.getIsbn()) &&
+                Objects.equals(getPublishedDate(), book.getPublishedDate()) &&
+                Objects.equals(getTitle(), book.getTitle()) &&
+                Objects.equals(getPrice(), book.getPrice());
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getIsbn(), getPublishedDate(), getAuthorId(), getTitle(), getPublisherId(), getPrice());
+    }
 }
