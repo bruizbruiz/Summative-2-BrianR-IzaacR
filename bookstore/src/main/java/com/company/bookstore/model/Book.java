@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "book")
-public class Book {
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,14 @@ public class Book {
     private String isbn;
     private LocalDate publishedDate;
 
-    @Column(name = "author_id")
-    private int authorId;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
     private String title;
 
-    @Column(name = "publisher_id")
-    private int publisherId;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
     private BigDecimal price;
 
     public String getTitle() {
@@ -40,24 +42,24 @@ public class Book {
         this.price = price;
     }
 
-    public int getPublisherId() {
-        return publisherId;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public int getId() {
@@ -89,17 +91,17 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return getId() == book.getId() &&
-                getAuthorId() == book.getAuthorId() &&
-                getPublisherId() == book.getPublisherId() &&
-                Objects.equals(getIsbn(), book.getIsbn()) &&
-                Objects.equals(getPublishedDate(), book.getPublishedDate()) &&
-                Objects.equals(getTitle(), book.getTitle()) &&
-                Objects.equals(getPrice(), book.getPrice());
+        return id == book.id &&
+                author == book.author &&
+                publisher == book.publisher &&
+                Objects.equals(isbn, book.isbn) &&
+                Objects.equals(publishedDate, book.publishedDate) &&
+                Objects.equals(title, book.title) &&
+                Objects.equals(price, book.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getIsbn(), getPublishedDate(), getAuthorId(), getTitle(), getPublisherId(), getPrice());
+        return Objects.hash(id, isbn, publishedDate, author, title, publisher, price);
     }
 }

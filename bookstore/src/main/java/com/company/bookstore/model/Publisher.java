@@ -15,11 +15,8 @@ public class Publisher implements Serializable {
     @Id
     @Column(name = "publisher_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "publisher_id")
-    private Set<Book> books = new HashSet<>();
     private String name;
     private String street;
     private String city;
@@ -30,7 +27,7 @@ public class Publisher implements Serializable {
 
     public Publisher() {}
 
-    public Publisher(int id, String name, String street, String city, String state, String postal_code, String phone, String email) {
+    public Publisher(Integer id, String name, String street, String city, String state, String postal_code, String phone, String email) {
         this.id = id;
         this.name = name;
         this.street = street;
@@ -41,11 +38,11 @@ public class Publisher implements Serializable {
         this.email = email;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,14 +60,6 @@ public class Publisher implements Serializable {
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
     }
 
     public String getCity() {
@@ -122,7 +111,6 @@ public class Publisher implements Serializable {
                 Objects.equals(this.getName(), publisher.getName()) &&
                 Objects.equals(this.getCity(), publisher.getCity()) &&
                 Objects.equals(this.getState(), publisher.getState()) &&
-                Objects.equals(this.getBooks(), publisher.getBooks()) &&
                 Objects.equals(this.getPostal_code(), publisher.getPostal_code()) &&
                 Objects.equals(this.getPhone(), publisher.getPhone()) &&
                 Objects.equals(this.getEmail(), publisher.getEmail());
@@ -130,6 +118,6 @@ public class Publisher implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getBooks(), getStreet(), getCity(), getState(), getPostal_code(), getPhone(), getEmail());
+        return Objects.hash(getId(), getName(), getStreet(), getCity(), getState(), getPostal_code(), getPhone(), getEmail());
     }
 }

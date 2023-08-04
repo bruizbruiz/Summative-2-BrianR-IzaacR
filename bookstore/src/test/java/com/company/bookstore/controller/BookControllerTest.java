@@ -42,11 +42,9 @@ class BookControllerTest {
     @Test
     public void shouldCreateBook() throws Exception{
         Book book = new Book();
-        book.setAuthorId(2);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
-        book.setPublisherId(4);
 
         String inputJson = mapper.writeValueAsString(book);
 
@@ -62,11 +60,9 @@ class BookControllerTest {
     @Test
     public void shouldGetBookById() throws Exception{
         Book book = new Book();
-        book.setAuthorId(2);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
-        book.setPublisherId(4);
         book.setId(1);
 
         bookRepository.save(book);
@@ -80,19 +76,15 @@ class BookControllerTest {
     @Test
     public void shouldGetAllBooks() throws Exception {
         Book book = new Book();
-        book.setAuthorId(2);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
-        book.setPublisherId(4);
         bookRepository.save(book);
 
         Book book1 = new Book();
-        book1.setAuthorId(1);
         book1.setIsbn("232-414-3137");
         book1.setPrice(new BigDecimal("12.99"));
         book1.setTitle("An Old Novel");
-        book1.setPublisherId(2);
         bookRepository.save(book1);
 
         mockMvc.perform(get("/book"))
@@ -104,11 +96,9 @@ class BookControllerTest {
     @Test
     public void shouldUpdateBook() throws Exception {
         Book book = new Book();
-        book.setAuthorId(2);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
-        book.setPublisherId(4);
 
         String inputJson = mapper.writeValueAsString(book);
 
@@ -124,12 +114,10 @@ class BookControllerTest {
     @Test
     public void shouldDeleteBookById() throws Exception {
         Book book = new Book();
-        book.setAuthorId(2);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
         book.setId(1);
         bookRepository.save(book);
 
@@ -142,21 +130,17 @@ class BookControllerTest {
     @Test
     public void shouldGetBooksByAuthorId() throws Exception {
         Book book = new Book();
-        book.setAuthorId(2);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
         bookRepository.save(book);
 
         Book book1 = new Book();
-        book1.setAuthorId(2);
         book1.setIsbn("232-414-3137");
         book1.setPrice(new BigDecimal("12.99"));
         book1.setTitle("An Old Novel");
         book1.setPublishedDate(LocalDate.of(2042, 1, 9));
-        book1.setPublisherId(2);
         bookRepository.save(book1);
 
         mockMvc.perform(get("/book/author/2"))

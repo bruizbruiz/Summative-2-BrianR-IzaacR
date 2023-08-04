@@ -21,22 +21,45 @@ class BookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    AuthorRepository authorRepository;
+
+    @Autowired
+    PublisherRepository publisherRepository;
+
+    private Book book;
+    private Author author;
     @BeforeEach
     public void setUp() {
+        bookRepository.deleteAll();
+        publisherRepository.deleteAll();
+        authorRepository.deleteAll();
 
-    }
 
-    @Test
-    public void shouldAddBook() {
-        Book book = new Book();
-        book.setAuthorId(2);
+        author = new Author();
+        author.setFirstName("Bob");
+        author.setLastName("Thumb");
+        author.setPhone("973-274-0903");
+        author = authorRepository.save(author);
+
+        Publisher publisher = new Publisher();
+        publisher.setName("Izaac Ramirez");
+        publisher.setState("California");
+        publisher = publisherRepository.save(publisher);
+
+        book = new Book();
+        book.setAuthor(author);
         book.setIsbn("101-222-3333");
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(1);
+        book.setPublisher(publisher);
 
         book = bookRepository.save(book);
+    }
+
+    @Test
+    public void shouldAddBook() {
 
         Optional<Book> book1 = bookRepository.findById(book.getId());
 
@@ -45,14 +68,7 @@ class BookRepositoryTest {
 
     @Test
     public void shouldGetBookById() {
-        Book book = new Book();
-        book.setAuthorId(2);
-        book.setIsbn("101-222-3333");
-        book.setPrice(new BigDecimal("24.99"));
-        book.setTitle("A New Novel");
-        book.setPublishedDate(LocalDate.of(2020, 1, 8));
 
-        book = bookRepository.save(book);
 
         Optional<Book> book1 = bookRepository.findById(book.getId());
 
@@ -62,41 +78,15 @@ class BookRepositoryTest {
 
     @Test
     public void shouldGetAllBooks() {
-        Book book = new Book();
-        book.setAuthorId(2);
-        book.setIsbn("101-222-3333");
-        book.setPrice(new BigDecimal("24.99"));
-        book.setTitle("A New Novel");
-        book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(2);
-
-        book = bookRepository.save(book);
-
-        book.setAuthorId(5);
-        book.setIsbn("101-543-3333");
-        book.setPrice(new BigDecimal("13.99"));
-        book.setTitle("An Old Novel");
-        book.setPublishedDate(LocalDate.of(1920, 1, 8));
-        book.setPublisherId(2);
-
-
-        book = bookRepository.save(book);
 
         List<Book> allBooks = bookRepository.findAll();
 
-        assertEquals(allBooks.size(), 2);
+        assertEquals(allBooks.size(), 1);
     }
 
     @Test
     public void shouldUpdateBook() {
-        Book book = new Book();
-        book.setAuthorId(2);
-        book.setIsbn("101-222-3333");
-        book.setPrice(new BigDecimal("24.99"));
-        book.setTitle("A New Novel");
-        book.setPublishedDate(LocalDate.of(2020, 1, 8));
 
-        book = bookRepository.save(book);
 
         book.setTitle("Uncreative Book");
         bookRepository.save(book);
@@ -108,14 +98,6 @@ class BookRepositoryTest {
 
     @Test
     public void shouldDeleteBookById() {
-        Book book = new Book();
-        book.setAuthorId(2);
-        book.setIsbn("101-222-3333");
-        book.setPrice(new BigDecimal("24.99"));
-        book.setTitle("A New Novel");
-        book.setPublishedDate(LocalDate.of(2020, 1, 8));
-
-        book = bookRepository.save(book);
 
         bookRepository.delete(book);
 
@@ -126,25 +108,10 @@ class BookRepositoryTest {
 
     @Test
     public void shouldSearchBookByAuthorId() {
-        Book book = new Book();
-        book.setAuthorId(2);
-        book.setIsbn("101-222-3333");
-        book.setPrice(new BigDecimal("24.99"));
-        book.setTitle("A New Novel");
-        book.setPublishedDate(LocalDate.of(2020, 1, 8));
 
-        book = bookRepository.save(book);
 
-        book.setAuthorId(2);
-        book.setIsbn("101-543-3333");
-        book.setPrice(new BigDecimal("13.99"));
-        book.setTitle("An Old Novel");
-        book.setPublishedDate(LocalDate.of(1920, 1, 8));
+        List<Book> bookList = bookRepository.findBookByAuthorId(author.getId());
 
-        book = bookRepository.save(book);
-
-        List<Book> bookList = bookRepository.findBookByAuthorId(2);
-
-        assertEquals(bookList.size(), 2);
+        assertEquals(bookList.size(), 1);
     }
 }
