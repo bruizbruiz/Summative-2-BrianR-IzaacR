@@ -19,10 +19,10 @@ public class Author implements Serializable {
     private int id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "authorId")
-    private Set<Book> tracks = new HashSet<>();
+    @JoinColumn(name = "author_id")
+    private Set<Book> books = new HashSet<>();
 
-    private int authorId;
+   // private int authorId;
     private String firstName;
     private String lastName;
     private String street;
@@ -32,6 +32,10 @@ public class Author implements Serializable {
     private String phone;
     private String email;
 
+    public Author(int id, String firstName, String lastName, String street, String city,
+                  String state, String postalCode, String phone, String email) {
+    }
+
     public int getId() {
         return id;
     }
@@ -40,21 +44,21 @@ public class Author implements Serializable {
         this.id = id;
     }
 
-    public Set<Book> getTracks() {
-        return tracks;
+    public Set<Book> getBooks() {
+        return books;
     }
 
-    public void setTracks(Set<Book> tracks) {
-        this.tracks = tracks;
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
+//    public int getAuthorId() {
+//        return authorId;
+//    }
+//
+//    public void setAuthorId(int authorId) {
+//        this.authorId = authorId;
+//    }
 
     public String getFirstName() {
         return firstName;
@@ -125,11 +129,11 @@ public class Author implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return id == author.id && authorId == author.authorId && Objects.equals(tracks, author.tracks) && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(street, author.street) && Objects.equals(city, author.city) && Objects.equals(state, author.state) && Objects.equals(postalCode, author.postalCode) && Objects.equals(phone, author.phone) && Objects.equals(email, author.email);
+        return id == author.id  && Objects.equals(books, author.books) && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(street, author.street) && Objects.equals(city, author.city) && Objects.equals(state, author.state) && Objects.equals(postalCode, author.postalCode) && Objects.equals(phone, author.phone) && Objects.equals(email, author.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tracks, authorId, firstName, lastName, street, city, state, postalCode, phone, email);
+        return Objects.hash(id, books, firstName, lastName, street, city, state, postalCode, phone, email);
     }
 }

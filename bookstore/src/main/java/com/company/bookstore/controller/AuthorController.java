@@ -4,9 +4,11 @@ import com.company.bookstore.model.Author;
 import com.company.bookstore.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AuthorController {
@@ -14,19 +16,33 @@ public class AuthorController {
     AuthorRepository repo;
 
     @GetMapping("/authors")
-    List<Author> getAuthors() {
-        return repo.findAll();
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<Author>> getAuthors() {
+        return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/customers/id/{Id}")
+    @GetMapping("/author/{Id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Author getAuthorById(@PathVariable int id) {
-        return repo.findById(id);
+        Optional<Author> returnVal = repo.findById(id);
+        if (returnVal.isPresent()) {
+            return returnVal.get();
+        }
+        else {
+            return null;
+        }
     }
 
     @PostMapping("/authors")
     @ResponseStatus(HttpStatus.CREATED)
-    public Author addAuthor(@RequestBody Author customer) {
-        return repo.save(customer);
+    public ResponseEntity<Author> addAuthor(@RequestBody Author author) {
+        Author newBook = repo.save(author);
+        if (newBook == null) {
+            return null;
+        }
+        else {
+            return new ResponseEntity<>(newBook, HttpStatus.CREATED);
+        }
     }
 
     @PutMapping("/authors")

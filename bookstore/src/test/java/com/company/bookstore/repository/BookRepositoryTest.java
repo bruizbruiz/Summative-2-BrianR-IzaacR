@@ -1,5 +1,6 @@
 package com.company.bookstore.repository;
 
+import com.company.bookstore.model.Author;
 import com.company.bookstore.model.Book;
 import com.company.bookstore.model.Publisher;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,7 @@ class BookRepositoryTest {
 
     @BeforeEach
     public void setUp() {
-        bookRepository.deleteAll();
+
     }
 
     @Test
@@ -33,7 +34,7 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
+        book.setPublisherId(1);
 
         book = bookRepository.save(book);
 
@@ -50,7 +51,6 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
 
         book = bookRepository.save(book);
 
@@ -68,7 +68,7 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
+        book.setPublisherId(2);
 
         book = bookRepository.save(book);
 
@@ -77,7 +77,8 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("13.99"));
         book.setTitle("An Old Novel");
         book.setPublishedDate(LocalDate.of(1920, 1, 8));
-        book.setPublisherId(4);
+        book.setPublisherId(2);
+
 
         book = bookRepository.save(book);
 
@@ -94,7 +95,6 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
 
         book = bookRepository.save(book);
 
@@ -114,7 +114,6 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
 
         book = bookRepository.save(book);
 
@@ -133,7 +132,6 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("24.99"));
         book.setTitle("A New Novel");
         book.setPublishedDate(LocalDate.of(2020, 1, 8));
-        book.setPublisherId(4);
 
         book = bookRepository.save(book);
 
@@ -142,7 +140,6 @@ class BookRepositoryTest {
         book.setPrice(new BigDecimal("13.99"));
         book.setTitle("An Old Novel");
         book.setPublishedDate(LocalDate.of(1920, 1, 8));
-        book.setPublisherId(4);
 
         book = bookRepository.save(book);
 

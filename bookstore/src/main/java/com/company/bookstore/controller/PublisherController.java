@@ -47,7 +47,7 @@ public class PublisherController {
         return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/publisher")
+    @PutMapping ("/publisher/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePublisher(@RequestBody Publisher publisher){
         repo.save(publisher);

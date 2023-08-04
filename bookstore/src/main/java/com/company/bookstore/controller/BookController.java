@@ -62,7 +62,7 @@ public class BookController {
         repo.deleteById(id);
     }
 
-    @GetMapping("/book/author/{id}")
+    @GetMapping("/book/author/{authorId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Book>> getBookByAuthorId(@PathVariable int authorId) {
         return new ResponseEntity<>(repo.findBookByAuthorId(authorId), HttpStatus.OK);

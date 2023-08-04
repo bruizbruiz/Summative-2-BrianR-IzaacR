@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +46,17 @@ class PublisherRepositoryTest {
 
     @Test
     public void getAllPublishersTest(){
+        Publisher publisher = new Publisher(1, "Izaac Ramirez", "Elmcroft", "Norwalk",
+                "California", "90650", "(562)846-8623", "izaacramirez1402@gmail.com");
+        publisher = repo.save(publisher);
 
+        Publisher publisher2 = new Publisher(2, "Edurado Ramirez", "Elmcroft", "Norwalk",
+                "California", "90650", "(562)846-8623", "santo757@gmail.com");
+        publisher2 = repo.save(publisher2);
+
+        List<Publisher> allPublishers = repo.findAll();
+
+        assertEquals(allPublishers.size(), 2);
     }
 
     @Test

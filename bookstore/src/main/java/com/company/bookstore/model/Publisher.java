@@ -2,16 +2,24 @@ package com.company.bookstore.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "publisher")
-public class Publisher {
+public class Publisher implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @Column(name = "publisher_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
     private String name;
     private String street;
     private String city;
@@ -22,7 +30,7 @@ public class Publisher {
 
     public Publisher() {}
 
-    public Publisher(Integer id, String name, String street, String city, String state, String postal_code, String phone, String email) {
+    public Publisher(int id, String name, String street, String city, String state, String postal_code, String phone, String email) {
         this.id = id;
         this.name = name;
         this.street = street;
@@ -33,11 +41,11 @@ public class Publisher {
         this.email = email;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -55,6 +63,14 @@ public class Publisher {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     public String getCity() {
@@ -102,17 +118,18 @@ public class Publisher {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Publisher publisher = (Publisher) o;
-        return Objects.equals(this.id, publisher.id) &&
-                Objects.equals(this.name, publisher.name) &&
-                Objects.equals(this.city, publisher.city) &&
-                Objects.equals(this.state, publisher.state) &&
-                Objects.equals(this.postal_code, publisher.postal_code) &&
-                Objects.equals(this.phone, publisher.phone) &&
-                Objects.equals(this.email, publisher.email);
+        return Objects.equals(this.getId(), publisher.getId()) &&
+                Objects.equals(this.getName(), publisher.getName()) &&
+                Objects.equals(this.getCity(), publisher.getCity()) &&
+                Objects.equals(this.getState(), publisher.getState()) &&
+                Objects.equals(this.getBooks(), publisher.getBooks()) &&
+                Objects.equals(this.getPostal_code(), publisher.getPostal_code()) &&
+                Objects.equals(this.getPhone(), publisher.getPhone()) &&
+                Objects.equals(this.getEmail(), publisher.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getStreet(), getCity(), getState(), getPostal_code(), getPhone(), getEmail());
+        return Objects.hash(getId(), getName(), getBooks(), getStreet(), getCity(), getState(), getPostal_code(), getPhone(), getEmail());
     }
 }
