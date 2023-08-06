@@ -14,31 +14,43 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class PublisherRepositoryTest {
     @Autowired
-    PublisherRepository repo;
+    PublisherRepository publisherRepository;
 
     @BeforeEach
     void setUp(){
-        repo.deleteAll();
+        publisherRepository.deleteAll();
     }
 
     @Test
     public void createNewPublisherTest(){
-        Publisher publisher = new Publisher(1, "Izaac Ramirez", "Elmcroft", "Norwalk",
-                "California", "90650", "(562)846-8623", "izaacramirez1402@gmail.com");
-        publisher = repo.save(publisher);
+        Publisher publisher = new Publisher();
+        publisher.setName("Izaac Ramirez");
+        publisher.setStreet("Elmcroft");
+        publisher.setCity("Norwalk");
+        publisher.setState("California");
+        publisher.setPostal_code("90650");
+        publisher.setPhone("(562)846-8623");
+        publisher.setEmail("izaacramirez1402@gmail.com");
+        publisher = publisherRepository.save(publisher);
 
-        Optional<Publisher> newPublisher = repo.findById(publisher.getId());
+        Optional<Publisher> newPublisher = publisherRepository.findById(publisher.getId());
 
         assertEquals(newPublisher.get(), publisher);
     }
 
     @Test
     public void getPublisherByIdTest(){
-        Publisher publisher = new Publisher(1, "Izaac Ramirez", "Elmcroft", "Norwalk",
-                "California", "90650", "(562)846-8623", "izaacramirez1402@gmail.com");
-        publisher = repo.save(publisher);
+        Publisher publisher = new Publisher();
+        publisher.setName("Izaac Ramirez");
+        publisher.setStreet("Elmcroft");
+        publisher.setCity("Norwalk");
+        publisher.setState("California");
+        publisher.setPostal_code("90650");
+        publisher.setPhone("(562)846-8623");
+        publisher.setEmail("izaacramirez1402@gmail.com");
+        publisher = publisherRepository.save(publisher);
 
-        Optional<Publisher> retrievedPublisher = repo.findById(publisher.getId());
+        Optional<Publisher> retrievedPublisher = publisherRepository.findById(publisher.getId());
 
         assertTrue(retrievedPublisher.isPresent());
         assertEquals(retrievedPublisher.get(), publisher);
@@ -46,43 +58,67 @@ class PublisherRepositoryTest {
 
     @Test
     public void getAllPublishersTest(){
-        Publisher publisher = new Publisher(1, "Izaac Ramirez", "Elmcroft", "Norwalk",
-                "California", "90650", "(562)846-8623", "izaacramirez1402@gmail.com");
-        publisher = repo.save(publisher);
+        Publisher publisher = new Publisher();
+        publisher.setName("Izaac Ramirez");
+        publisher.setStreet("Elmcroft");
+        publisher.setCity("Norwalk");
+        publisher.setState("California");
+        publisher.setPostal_code("90650");
+        publisher.setPhone("(562)846-8623");
+        publisher.setEmail("izaacramirez1402@gmail.com");
+        publisher = publisherRepository.save(publisher);
 
-        Publisher publisher2 = new Publisher(2, "Edurado Ramirez", "Elmcroft", "Norwalk",
-                "California", "90650", "(562)846-8623", "santo757@gmail.com");
-        publisher2 = repo.save(publisher2);
+        Publisher publisher2 = new Publisher();
+        publisher2.setName("Eduardo Ramirez");
+        publisher2.setStreet("Elmcroft");
+        publisher2.setCity("Norwalk");
+        publisher2.setState("California");
+        publisher2.setPostal_code("90650");
+        publisher2.setPhone("(522)846-8623");
+        publisher2.setEmail("santo12@gmail.com");
+        publisher2 = publisherRepository.save(publisher2);
 
-        List<Publisher> allPublishers = repo.findAll();
+        List<Publisher> allPublishers = publisherRepository.findAll();
 
         assertEquals(allPublishers.size(), 2);
     }
 
     @Test
     public void updatePublisherTest(){
-        Publisher publisher = new Publisher(1, "Izaac Ramirez", "Elmcroft", "Norwalk",
-                "California", "90650", "(562)846-8623", "izaacramirez1402@gmail.com");
-        publisher = repo.save(publisher);
+        Publisher publisher = new Publisher();
+        publisher.setName("Izaac Ramirez");
+        publisher.setStreet("Elmcroft");
+        publisher.setCity("Norwalk");
+        publisher.setState("California");
+        publisher.setPostal_code("90650");
+        publisher.setPhone("(562)846-8623");
+        publisher.setEmail("izaacramirez1402@gmail.com");
+        publisher = publisherRepository.save(publisher);
 
         publisher.setCity("Downey");
 
-        repo.save(publisher);
+        publisherRepository.save(publisher);
 
-        Optional<Publisher> newPublisher = repo.findById(publisher.getId());
+        Optional<Publisher> newPublisher = publisherRepository.findById(publisher.getId());
 
         assertEquals(newPublisher.get(), publisher);
     }
 
     @Test
     public void deletePublisherTest(){
-        Publisher publisher = new Publisher(1, "Izaac Ramirez", "Elmcroft", "Norwalk",
-                "California", "90650", "(562)846-8623", "izaacramirez1402@gmail.com");
-        publisher = repo.save(publisher);
+        Publisher publisher = new Publisher();
+        publisher.setName("Izaac Ramirez");
+        publisher.setStreet("Elmcroft");
+        publisher.setCity("Norwalk");
+        publisher.setState("California");
+        publisher.setPostal_code("90650");
+        publisher.setPhone("(562)846-8623");
+        publisher.setEmail("izaacramirez1402@gmail.com");
+        publisher = publisherRepository.save(publisher);
 
-        repo.delete(publisher);
+        publisherRepository.delete(publisher);
 
-        Publisher deletedPublisher = repo.findById(publisher.getId()).orElse(null);
+        Publisher deletedPublisher = publisherRepository.findById(publisher.getId()).orElse(null);
 
         assertNull(deletedPublisher);
     }

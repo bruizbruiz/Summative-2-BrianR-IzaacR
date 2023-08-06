@@ -31,6 +31,19 @@ public class Book implements Serializable {
     private Publisher publisher;
     private BigDecimal price;
 
+    public Book() {}
+
+
+    public Book(int id, String isbn, LocalDate publishedDate, Author author, String title, Publisher publisher, BigDecimal price) {
+        this.id = id;
+        this.isbn = isbn;
+        this.publishedDate = publishedDate;
+        this.author = author;
+        this.title = title;
+        this.publisher = publisher;
+        this.price = price;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -86,6 +99,7 @@ public class Book implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
 
     @Override
     public boolean equals(Object o) {

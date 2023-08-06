@@ -1,6 +1,7 @@
 package com.company.bookstore.controller;
 
 import com.company.bookstore.model.Author;
+import com.company.bookstore.model.Publisher;
 import com.company.bookstore.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,14 +16,15 @@ public class AuthorController {
     @Autowired
     AuthorRepository repo;
 
-    @GetMapping("/authors")
+    @GetMapping("/author")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Author>> getAuthors() {
         return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/author/{Id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+
+    @GetMapping("/author/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Author getAuthorById(@PathVariable int id) {
         Optional<Author> returnVal = repo.findById(id);
         if (returnVal.isPresent()) {
@@ -33,25 +35,25 @@ public class AuthorController {
         }
     }
 
-    @PostMapping("/authors")
+    @PostMapping("/author")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Author> addAuthor(@RequestBody Author author) {
-        Author newBook = repo.save(author);
-        if (newBook == null) {
+        Author newAuthor = repo.save(author);
+        if (newAuthor == null) {
             return null;
         }
         else {
-            return new ResponseEntity<>(newBook, HttpStatus.CREATED);
+            return new ResponseEntity<>(newAuthor, HttpStatus.CREATED);
         }
     }
 
-    @PutMapping("/authors")
+    @PutMapping("/author")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Author updateAuthor(@RequestBody Author author) {
-        return repo.save(author);
+    public void updateAuthor(@RequestBody Author author) {
+        repo.save(author);
     }
 
-    @DeleteMapping("/authors/{id}")
+    @DeleteMapping("/author/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAuthor(@PathVariable int id) {
         repo.deleteById(id);

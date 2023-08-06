@@ -83,7 +83,7 @@ class PublisherControllerTest {
 
         publisher.setPhone("(562)347-4235");
 
-        mockMvc.perform(put("/publisher/{id}", publisher.getId())
+        mockMvc.perform(put("/publisher")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(inputJson))
                 .andExpect(status().isNoContent());
