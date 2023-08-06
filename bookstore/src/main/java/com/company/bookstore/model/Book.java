@@ -18,6 +18,7 @@ public class Book implements Serializable {
     @Column(name = "book_id")
     private int id;
     private String isbn;
+    @Column(name = "publish_date")
     private LocalDate publishedDate;
 
     @ManyToOne

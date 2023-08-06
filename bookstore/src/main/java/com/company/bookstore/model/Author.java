@@ -18,6 +18,9 @@ public class Author implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    private Set<Book> books = new HashSet<>();
+
     private String firstName;
     private String lastName;
     private String street;

@@ -17,6 +17,9 @@ public class Publisher implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
+    private Set<Book> books = new HashSet<>();
+
     private String name;
     private String street;
     private String city;
