@@ -13,7 +13,7 @@ import java.rmi.ServerException;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class BookController {
     @Autowired
     BookRepository repo;
