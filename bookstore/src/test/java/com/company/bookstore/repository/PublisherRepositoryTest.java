@@ -27,7 +27,7 @@ class PublisherRepositoryTest {
         publisher.setName("Izaac Ramirez");
         publisher.setStreet("Elmcroft");
         publisher.setCity("Norwalk");
-        publisher.setState("California");
+        publisher.setState("CA");
         publisher.setPostal_code("90650");
         publisher.setPhone("(562)846-8623");
         publisher.setEmail("izaacramirez1402@gmail.com");
@@ -44,7 +44,7 @@ class PublisherRepositoryTest {
         publisher.setName("Izaac Ramirez");
         publisher.setStreet("Elmcroft");
         publisher.setCity("Norwalk");
-        publisher.setState("California");
+        publisher.setState("CA");
         publisher.setPostal_code("90650");
         publisher.setPhone("(562)846-8623");
         publisher.setEmail("izaacramirez1402@gmail.com");
@@ -62,7 +62,7 @@ class PublisherRepositoryTest {
         publisher.setName("Izaac Ramirez");
         publisher.setStreet("Elmcroft");
         publisher.setCity("Norwalk");
-        publisher.setState("California");
+        publisher.setState("CA");
         publisher.setPostal_code("90650");
         publisher.setPhone("(562)846-8623");
         publisher.setEmail("izaacramirez1402@gmail.com");
@@ -72,7 +72,7 @@ class PublisherRepositoryTest {
         publisher2.setName("Eduardo Ramirez");
         publisher2.setStreet("Elmcroft");
         publisher2.setCity("Norwalk");
-        publisher2.setState("California");
+        publisher2.setState("CA");
         publisher2.setPostal_code("90650");
         publisher2.setPhone("(522)846-8623");
         publisher2.setEmail("santo12@gmail.com");
@@ -89,7 +89,7 @@ class PublisherRepositoryTest {
         publisher.setName("Izaac Ramirez");
         publisher.setStreet("Elmcroft");
         publisher.setCity("Norwalk");
-        publisher.setState("California");
+        publisher.setState("CA");
         publisher.setPostal_code("90650");
         publisher.setPhone("(562)846-8623");
         publisher.setEmail("izaacramirez1402@gmail.com");
@@ -110,7 +110,7 @@ class PublisherRepositoryTest {
         publisher.setName("Izaac Ramirez");
         publisher.setStreet("Elmcroft");
         publisher.setCity("Norwalk");
-        publisher.setState("California");
+        publisher.setState("CA");
         publisher.setPostal_code("90650");
         publisher.setPhone("(562)846-8623");
         publisher.setEmail("izaacramirez1402@gmail.com");

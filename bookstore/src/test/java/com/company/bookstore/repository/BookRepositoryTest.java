@@ -39,12 +39,22 @@ class BookRepositoryTest {
         author = new Author();
         author.setFirstName("Bob");
         author.setLastName("Thumb");
+        author.setStreet("Colima");
+        author.setCity("Whittier");
+        author.setState("CA");
+        author.setPostalCode("90650");
         author.setPhone("973-274-0903");
+        author.setEmail("hi@gmail.com");
         author = authorRepository.save(author);
 
         Publisher publisher = new Publisher();
         publisher.setName("Izaac Ramirez");
-        publisher.setState("California");
+        publisher.setStreet("Elmcroft");
+        publisher.setCity("Norwalk");
+        publisher.setState("CA");
+        publisher.setPostal_code("90650");
+        publisher.setPhone("(562)846-8623");
+        publisher.setEmail("izaacramirez1402@gmail.com");
         publisher = publisherRepository.save(publisher);
 
         book = new Book();

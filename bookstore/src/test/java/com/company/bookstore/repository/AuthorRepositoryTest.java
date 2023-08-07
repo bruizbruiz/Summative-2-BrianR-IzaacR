@@ -30,7 +30,7 @@ class AuthorRepositoryTest {
         author.setLastName("Udechukwu");
         author.setStreet("Fenimore");
         author.setCity("Brooklyn");
-        author.setState("New york");
+        author.setState("NY");
         author.setPostalCode("11225");
         author.setPhone("4155703748");
         author.setEmail("chaiamaka@gmailc.om");
@@ -48,7 +48,7 @@ class AuthorRepositoryTest {
         author.setLastName("Udechukwu");
         author.setStreet("Fenimore");
         author.setCity("Brooklyn");
-        author.setState("New york");
+        author.setState("NY");
         author.setPostalCode("11225");
         author.setPhone("4155703748");
         author.setEmail("chaiamaka@gmailc.om");
@@ -67,7 +67,7 @@ class AuthorRepositoryTest {
         author.setLastName("Udechukwu");
         author.setStreet("Fenimore");
         author.setCity("Brooklyn");
-        author.setState("New york");
+        author.setState("NY");
         author.setPostalCode("11225");
         author.setPhone("4155703748");
         author.setEmail("chaiamaka@gmailc.om");
@@ -78,7 +78,7 @@ class AuthorRepositoryTest {
         author1.setLastName("Udechukwu");
         author1.setStreet("Fenimore");
         author1.setCity("Brooklyn");
-        author1.setState("New york");
+        author1.setState("NY");
         author1.setPostalCode("11225");
         author1.setPhone("4155703748");
         author1.setEmail("chaiamaka@gmailc.om");
@@ -95,7 +95,7 @@ class AuthorRepositoryTest {
         author.setLastName("Udechukwu");
         author.setStreet("Fenimore");
         author.setCity("Brooklyn");
-        author.setState("New york");
+        author.setState("NY");
         author.setPostalCode("11225");
         author.setPhone("4155703748");
         author.setEmail("chaiamaka@gmailc.om");
@@ -115,7 +115,7 @@ class AuthorRepositoryTest {
         author.setLastName("Udechukwu");
         author.setStreet("Fenimore");
         author.setCity("Brooklyn");
-        author.setState("New york");
+        author.setState("NY");
         author.setPostalCode("11225");
         author.setPhone("4155703748");
         author.setEmail("chaiamaka@gmailc.om");
